@@ -13,9 +13,77 @@ library(janitor)
 library(ggbeeswarm)
 library(car)
 library(kableExtra)
+library(janitor)
+```
+
+#### Introduction
+
+#### Data and Methods
+
+#### Results
+
+##### Results A: Visually compare annual salamander counts in old growth (OG) and clear cut (CC) sections of Mack Creek. 
+
+DITE = pacific giant salamander
+
+1993 = beginning of pacific giant salamander
+
+```{r}
+
+# Read in data
+
+mack_creek_df <- read_csv("mack_creek_vertebrates.csv") %>% 
+  clean_names()
+
+```
+
+```{r} 
+
+# Data wrangling
+
+mack_creek_a <- mack_creek_df %>% 
+  filter(year > 1992) %>%
+  filter(species == "DITE") %>% 
+  group_by(year, section) %>% 
+  summarize(total_count <- sum(!is.na(species))) %>% 
+  rename(total_count = "total_count <- sum(!is.na(species))")
+
 ```
 
 ```{r}
 
+# Create a finalized graph
+
+ggplot(mack_creek_a, aes(x = year, y = total_count)) +
+  geom_point(aes(color = section))
+
 ```
+
+```{r}
+
+
+
+```
+
+
+##### Results B
+##### Results C
+##### Results D
+##### Results E
+
+- 
+- 
+- 
+
+#### Summary
+
+#### References 
+
+Gregory S. V. 2016. Aquatic Vertebrate Population Study in Mack Creek, Andrews Experimental Forest, 1987 to present. Environmental Data Initiative. https://doi.org/10.6073/pasta/5de64af9c11579266ef20da2ff32f702.
+
+
+
+
+
+
 
